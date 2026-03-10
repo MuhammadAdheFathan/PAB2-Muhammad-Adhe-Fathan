@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       scrollBehavior: AppScrollBehavior(),
-      title: "Pilem",
+      title: "film",
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const MainScreen(),  // ← Diubah dari HomeScreen() ke MainScreen()
     );

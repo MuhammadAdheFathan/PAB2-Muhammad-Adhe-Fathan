@@ -1,6 +1,6 @@
+import 'package:film/services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:film/models/movie.dart';
-import 'package:film/services/api_service.dart';
 
 import 'detail_screen.dart';
 
@@ -13,6 +13,8 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenState extends State<HomeScreen> {
   final ApiService _apiService = ApiService();
   List<Movie> _allMovies = [];
+  List<Movie> _trendingMovies = [];
+  List<Movie> _popularMovies = []; 
 
   @override
   void initState() {
@@ -23,9 +25,17 @@ class HomeScreenState extends State<HomeScreen> {
   Future<void> _loadMovies() async {
     final List<Map<String, dynamic>> allMoviesData =
         await _apiService.getAllMovies();
-        
+  // trending
+  final List<Map<String, dynamic>> trendingMoviesData =
+        await _apiService.getTrendingMovies();
+  // popular  
+  final List<Map<String, dynamic>> popularMoviesData =
+        await _apiService.getPopularMovies();
+
     setState(() {
       _allMovies = allMoviesData.map((e) => Movie.fromJson(e)).toList();
+      _trendingMovies = trendingMoviesData.map((e) => Movie.fromJson(e)).toList();
+      _popularMovies = popularMoviesData.map((e) => Movie.fromJson(e)).toList();
       
     });
   }
@@ -39,7 +49,10 @@ class HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildMoviesList('All Movies', _allMovies),
-
+            //trending
+            _buildMoviesList('Trending Movies', _trendingMovies),
+            //popular
+            _buildMoviesList('Popular Movies', _popularMovies),
           ],
         ),
       ),
