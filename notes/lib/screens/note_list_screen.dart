@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import '../models/note.dart';
-import '../services/fcm_service.dart';
 import '../services/note_service.dart';
 import '../widgets/note_dialog.dart';
 
@@ -26,14 +25,6 @@ class _NoteListScreenState extends State<NoteListScreen> {
     if (note != null) {
       try {
         await _noteService.addNote(note);
-        try {
-          await FcmService().sendNoteNotification(
-            title: note.title,
-            description: note.description,
-          );
-        } catch (e) {
-          debugPrint('Gagal mengirim notifikasi FCM: $e');
-        }
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
