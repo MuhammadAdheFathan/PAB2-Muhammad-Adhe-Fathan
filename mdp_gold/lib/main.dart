@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 // Import konfigurasi Firebase yang di-generate otomatis oleh FlutterFire CLI
 import 'firebase_options.dart';
 // Import halaman ShoppingListScreen yang akan ditampilkan
-import 'package:daftar_belanja/screens/shopping_list_screen.dart';
+//import 'package:daftar_belanja/screens/shopping_list_screen.dart';
 
 // Fungsi utama yang dijalankan pertama kali saat aplikasi dibuka
 void main() async {
@@ -41,7 +41,7 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // Halaman utama yang ditampilkan saat aplikasi pertama kali dibuka
-      home: const ShoppingListScreen(),
+    //  home: const ShoppingListScreen(),
     );
   }
 }
